@@ -2,9 +2,13 @@ package com.leetotheyutothelee.adminnotificationapp.di
 
 import android.content.Context
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.leetotheyutothelee.adminnotificationapp.BuildConfig
 import com.leetotheyutothelee.adminnotificationapp.constant.NetworkConstant
+import com.leetotheyutothelee.adminnotificationapp.data.remote.ApiService
+import com.leetotheyutothelee.adminnotificationapp.data.repository.ApiRepository
+import com.leetotheyutothelee.adminnotificationapp.data.repository.ApiRepositoryImpl
+import com.leetotheyutothelee.adminnotificationapp.data.source.ApiDataSource
+import com.leetotheyutothelee.adminnotificationapp.data.source.ApiDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,5 +77,21 @@ class NetworkModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
 
+    @Provides
+    @Singleton
+    fun provideApiDataSource(apiService: ApiService): ApiDataSource {
+        return ApiDataSourceImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiRepository(apiDataSource: ApiDataSource): ApiRepository {
+        return ApiRepositoryImpl(apiDataSource)
+    }
 }
