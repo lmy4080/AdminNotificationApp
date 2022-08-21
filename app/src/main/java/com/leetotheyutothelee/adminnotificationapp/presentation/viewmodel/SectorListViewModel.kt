@@ -4,15 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leetotheyutothelee.adminnotificationapp.base.MutableEventFlow
 import com.leetotheyutothelee.adminnotificationapp.base.asEventFlow
-import com.leetotheyutothelee.adminnotificationapp.domain.usecase.SectorListUseCase
-import com.leetotheyutothelee.adminnotificationapp.presentation.model.SectorListModel
+import com.leetotheyutothelee.adminnotificationapp.domain.usecase.SectorsUseCase
+import com.leetotheyutothelee.adminnotificationapp.presentation.model.SectorsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SectorListViewModel @Inject constructor(
-    private val sectorListUseCase: SectorListUseCase
+    private val sectorListUseCase: SectorsUseCase
 ): ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -39,6 +39,6 @@ class SectorListViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class SectorList(val sectorListModel: SectorListModel): Event()
+        data class SectorList(val sectorListModel: SectorsModel): Event()
     }
 }
