@@ -11,6 +11,6 @@ class CategoriesUseCase @Inject constructor(
 ): SingleUseCase<CategoriesModel, Any>() {
 
     override suspend fun buildUseCaseSingle(params: Any?): CategoriesModel {
-        return apiRepository.getCategoryList().toPresentation()
+        return apiRepository.getCategories().toPresentation()
     }
 }

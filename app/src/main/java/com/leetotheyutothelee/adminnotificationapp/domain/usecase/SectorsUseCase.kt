@@ -11,6 +11,6 @@ class SectorsUseCase @Inject constructor(
 ): SingleUseCase<SectorsModel, Any>() {
 
     override suspend fun buildUseCaseSingle(params: Any?): SectorsModel {
-        return apiRepository.getSectorList().toPresentation()
+        return apiRepository.getSectors().toPresentation()
     }
 }

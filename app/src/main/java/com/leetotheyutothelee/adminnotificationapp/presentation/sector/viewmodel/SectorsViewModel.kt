@@ -1,4 +1,4 @@
-package com.leetotheyutothelee.adminnotificationapp.presentation.viewmodel
+package com.leetotheyutothelee.adminnotificationapp.presentation.sector.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,19 +11,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SectorListViewModel @Inject constructor(
+class SectorsViewModel @Inject constructor(
     private val sectorListUseCase: SectorsUseCase
 ): ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
 
-    fun getSectorList() {
+    fun getSectors() {
         viewModelScope.launch {
             sectorListUseCase.execute(
                 params = null,
                 onSuccess = {
-                    event(Event.SectorList(it))
+                    event(Event.Sectors(it))
                 },
                 onError = {
 
@@ -39,6 +39,6 @@ class SectorListViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class SectorList(val sectorListModel: SectorsModel): Event()
+        data class Sectors(val sectorListModel: SectorsModel): Event()
     }
 }
