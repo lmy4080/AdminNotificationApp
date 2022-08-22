@@ -1,28 +1,28 @@
-package com.leetotheyutothelee.adminnotificationapp.presentation.ui
+package com.leetotheyutothelee.adminnotificationapp.presentation.sector.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.leetotheyutothelee.adminnotificationapp.R
-import com.leetotheyutothelee.adminnotificationapp.databinding.ActivitySectorListBinding
+import com.leetotheyutothelee.adminnotificationapp.databinding.ActivitySectorsBinding
 import com.leetotheyutothelee.adminnotificationapp.extension.repeatOnStarted
-import com.leetotheyutothelee.adminnotificationapp.presentation.adapter.SectorAdapter
-import com.leetotheyutothelee.adminnotificationapp.presentation.viewmodel.SectorListViewModel
+import com.leetotheyutothelee.adminnotificationapp.presentation.sector.adapter.SectorAdapter
+import com.leetotheyutothelee.adminnotificationapp.presentation.sector.viewmodel.SectorsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SectorListActivity : AppCompatActivity() {
+class SectorsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySectorListBinding
-    private val viewModel: SectorListViewModel by viewModels()
+    private lateinit var binding: ActivitySectorsBinding
+    private val viewModel: SectorsViewModel by viewModels()
     private val sectorAdapter: SectorAdapter by lazy {
         SectorAdapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_list)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sectors)
 
         with(binding) {
 
@@ -35,12 +35,13 @@ class SectorListActivity : AppCompatActivity() {
             repeatOnStarted {
                 eventFlow.collect { event -> handleEvent(event) }
             }
+            getSectors()
         }
     }
 
-    private fun handleEvent(event: SectorListViewModel.Event) {
+    private fun handleEvent(event: SectorsViewModel.Event) {
         when(event) {
-            is SectorListViewModel.Event.SectorList -> {
+            is SectorsViewModel.Event.Sectors -> {
                 with(binding) {
                     sectorAdapter.submitList(event.sectorListModel.sectorList)
                 }

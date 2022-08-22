@@ -1,11 +1,13 @@
-package com.leetotheyutothelee.adminnotificationapp.presentation.adapter
+package com.leetotheyutothelee.adminnotificationapp.presentation.sector.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.leetotheyutothelee.adminnotificationapp.base.BaseViewHolder
 import com.leetotheyutothelee.adminnotificationapp.databinding.ItemSectorBinding
+import com.leetotheyutothelee.adminnotificationapp.presentation.errorpickingproduct.ui.ErrorPickingProductActivity
 import com.leetotheyutothelee.adminnotificationapp.presentation.model.SectorModel
 
 class SectorAdapter: ListAdapter<SectorModel, BaseViewHolder>(SECTOR_DIFF) {
@@ -30,7 +32,7 @@ class SectorAdapter: ListAdapter<SectorModel, BaseViewHolder>(SECTOR_DIFF) {
             }
             with(holder.itemView) {
                 setOnClickListener {
-                    //
+                    context.startActivity(Intent(context, ErrorPickingProductActivity::class.java))
                 }
             }
         }

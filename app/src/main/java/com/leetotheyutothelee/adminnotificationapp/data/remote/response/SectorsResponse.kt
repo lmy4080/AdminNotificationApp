@@ -1,7 +1,7 @@
 package com.leetotheyutothelee.adminnotificationapp.data.remote.response
 
-data class SectorListResponse(
-    val sectorList: ArrayList<SectorResponse>?
+data class SectorsResponse(
+    val sectors: ArrayList<SectorResponse>?
 )
 
 data class SectorResponse(
