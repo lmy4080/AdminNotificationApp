@@ -12,4 +12,6 @@ data class ErrorPickingProductModel(
     val requestBoxNo: Int?,
     val expectedCount: Int?,
     val actualCount: Int?,
+    val isOver: Boolean?,
+    val displayCount: Int?
 )

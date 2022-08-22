@@ -1,7 +1,9 @@
 package com.leetotheyutothelee.adminnotificationapp.di
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.leetotheyutothelee.adminnotificationapp.BuildConfig
 import com.leetotheyutothelee.adminnotificationapp.constant.NetworkConstant
 import com.leetotheyutothelee.adminnotificationapp.data.remote.ApiService
@@ -48,18 +50,14 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
+        return GsonConverterFactory.create(GsonBuilder().create())
     }
 
     @Provides
     @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
-            level = if(BuildConfig.DEBUG) {
-                HttpLoggingInterceptor.Level.BODY
-            } else {
-                HttpLoggingInterceptor.Level.NONE
-            }
+            level = HttpLoggingInterceptor.Level.BODY
         }
     }
 
@@ -69,12 +67,22 @@ class NetworkModule {
         @ApplicationContext context: Context,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
-        return OkHttpClient().newBuilder()
-            .cache(Cache(context.cacheDir, (4 * 1024 * 1024).toLong()))
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .build()
+        with(OkHttpClient().newBuilder()) {
+            cache(Cache(context.cacheDir, (5 * 1024 * 1024).toLong()))
+            connectTimeout(60, TimeUnit.SECONDS)
+            readTimeout(60, TimeUnit.SECONDS)
+            writeTimeout(60, TimeUnit.SECONDS)
+            addInterceptor {
+                it.proceed(
+                    it.request().newBuilder()
+                        .addHeader("Accept", "application/json")
+                        .method(it.request().method(), it.request().body())
+                        .build()
+                )
+            }
+            addInterceptor(httpLoggingInterceptor)
+            return build()
+        }
     }
 
     @Provides
