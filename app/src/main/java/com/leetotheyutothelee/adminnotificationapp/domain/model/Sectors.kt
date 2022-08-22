@@ -1,6 +1,6 @@
 package com.leetotheyutothelee.adminnotificationapp.domain.model
 
-data class SectorList(
+data class Sectors(
     val sectorList: ArrayList<Sector>?
 )
 
