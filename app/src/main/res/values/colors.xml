@@ -11,5 +11,7 @@
     <color name="kurly_300">#806D86</color>
     <color name="gray_200">#E0E0E0</color>
     <color name="gray_300">#7F7F7F</color>
+    <color name="red_200">#C0392B</color>
+    <color name="blue_200">#2980B9</color>
     <color name="background_200">#EDE9E9</color>
 </resources>
