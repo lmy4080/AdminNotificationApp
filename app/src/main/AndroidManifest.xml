@@ -18,17 +18,37 @@
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name="com.leetotheyutothelee.adminnotificationapp.presentation.errorpickingproduct.ui.ErrorPickingProductActivity"
-            android:exported="false">
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.leetotheyutothelee.adminnotificationapp.presentation.sector.ui.SectorsActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".presentation.service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_kurly_icon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/kurly_200" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>
