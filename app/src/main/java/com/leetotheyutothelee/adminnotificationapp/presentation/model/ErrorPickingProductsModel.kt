@@ -1,17 +1,19 @@
 package com.leetotheyutothelee.adminnotificationapp.presentation.model
 
+import java.io.Serializable
+
 data class ErrorPickingProductsModel(
     val errorPickingProducts: ArrayList<ErrorPickingProductModel>?
-)
+): Serializable
 
 data class ErrorPickingProductModel(
     val categoryType: String?,
     val categoryName: String?,
     val productName: String?,
-    val errorTime: String?,
-    val requestBoxNo: Int?,
+    var errorTime: String?,
+    val requestBoxNo: String?,
     val expectedCount: Int?,
     val actualCount: Int?,
-    val isOver: Boolean?,
-    val displayCount: Int?
-)
+    var isOver: Boolean?,
+    var displayCount: Int?
+): Serializable
