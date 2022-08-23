@@ -25,25 +25,20 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/tv_errorTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/errorTtitle"
-                android:textColor="@color/gray_300"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/gl_category"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
                 android:id="@+id/tv_errorAt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
                 android:text="@{errorPickingProduct.errorTime}"
                 tools:text="22.08.19 16:44"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@id/gl_category"
-                app:layout_constraintTop_toTopOf="@id/tv_errorTitle"/>
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_productName"/>
 
             <TextView
                 android:id="@+id/tv_countTitle"
@@ -53,7 +48,8 @@
                 android:text="@string/count"
                 android:textColor="@color/gray_300"
                 app:layout_constraintEnd_toStartOf="@id/iv_countIcon"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageView
                 android:id="@+id/iv_countIcon"
@@ -62,8 +58,8 @@
                 android:layout_marginEnd="4dp"
                 android:src="@{errorPickingProduct.isOver == true ? @drawable/ic_baseline_arrow_upward_24 : @drawable/ic_baseline_arrow_downward_24}"
                 app:layout_constraintEnd_toStartOf="@id/tv_count"
-                app:layout_constraintTop_toTopOf="@id/tv_count"
-                app:layout_constraintBottom_toBottomOf="@id/tv_count"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_count"
@@ -71,45 +67,39 @@
                 android:layout_height="wrap_content"
                 android:text="@{errorPickingProduct.displayCount.toString()}"
                 tools:text="2"
-                android:textColor="@color/gray_300"
+                android:textColor="@{errorPickingProduct.isOver == true ? @color/red_200 : @color/blue_200}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{errorPickingProduct.categoryName}"
                 android:textColor="@color/gray_300"
-                app:layout_constrainedWidth="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/gl_category"
-                app:layout_constraintTop_toBottomOf="@id/tv_errorTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="가전제품" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.2"/>
 
             <TextView
                 android:id="@+id/tv_productName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="12dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{errorPickingProduct.productName}"
+                android:textSize="16dp"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/gl_category"
-                app:layout_constraintTop_toTopOf="@id/tv_category"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_countTitle"
+                app:layout_constraintTop_toBottomOf="@id/tv_category"
                 tools:text="공기청정기" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

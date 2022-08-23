@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "42568726829",
+    "project_id": "leetotheyuththelee",
+    "storage_bucket": "leetotheyuththelee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42568726829:android:11deae44eb6fe0e60abba4",
+        "android_client_info": {
+          "package_name": "com.leetotheyutothelee.adminnotificationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42568726829-hnmrbm3k4ftseombmqtcd1mpr7qsqkbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-Bl8W5MG8io_fNq_ZTmJH3S-sZT_j7xQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42568726829-hnmrbm3k4ftseombmqtcd1mpr7qsqkbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

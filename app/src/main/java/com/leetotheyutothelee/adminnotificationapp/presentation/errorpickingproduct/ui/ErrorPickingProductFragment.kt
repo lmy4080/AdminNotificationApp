@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.leetotheyutothelee.adminnotificationapp.R
+import com.leetotheyutothelee.adminnotificationapp.constant.ViewConstant.CATEGORY_TYPE_ALL
 import com.leetotheyutothelee.adminnotificationapp.databinding.FragmentErrorPickingProductBinding
-import com.leetotheyutothelee.adminnotificationapp.extension.repeatOnStarted
 import com.leetotheyutothelee.adminnotificationapp.presentation.errorpickingproduct.adapter.ErrorPickingProductAdapter
 import com.leetotheyutothelee.adminnotificationapp.presentation.errorpickingproduct.viewmodel.ErrorPickingProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ private const val CATEGORY_TYPE = "categoryType"
 class ErrorPickingProductFragment : Fragment() {
 
     private lateinit var binding: FragmentErrorPickingProductBinding
-    private val viewModel: ErrorPickingProductViewModel by viewModels()
+    private val viewModel: ErrorPickingProductViewModel by activityViewModels()
 
     private val errorPickingProductAdapter: ErrorPickingProductAdapter by lazy {
         ErrorPickingProductAdapter()
@@ -55,20 +55,13 @@ class ErrorPickingProductFragment : Fragment() {
         }
 
         with(viewModel) {
-            repeatOnStarted {
-                eventFlow.collect { event -> handleEvent(event) }
-            }
-        }
-    }
-
-    private fun handleEvent(event: ErrorPickingProductViewModel.Event) {
-        when(event) {
-            is ErrorPickingProductViewModel.Event.GetErrorPickingProducts -> {
-                val errorPickingProducts = event.errorPickingProductsModel.errorPickingProducts?.filter {
-                    categoryType == it.categoryType
+            errorPickingProducts.observe(viewLifecycleOwner) {
+                it.errorPickingProducts?.filter { errorPickingProduct ->
+                    categoryType == errorPickingProduct.categoryType || categoryType == CATEGORY_TYPE_ALL
+                }?.let { errorPickingProducts ->
+                    errorPickingProductAdapter.submitList(null)
+                    errorPickingProductAdapter.submitList(errorPickingProducts)
                 }
-                println("ErrorPickingProductFragment: handleEvent: errorPickingProducts: ${errorPickingProducts}")
-                errorPickingProductAdapter.submitList(errorPickingProducts)
             }
         }
     }
