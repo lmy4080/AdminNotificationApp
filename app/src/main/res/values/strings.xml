@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AdminNotificationApp</string>
+    <string name="sectorSelect">물류창고 선택</string>
+    <string name="errorPickingProducts">오피킹 모니터링 화면</string>
+    <string name="admin">관리자</string>
+    <string name="worker">작업자</string>
+    <string name="count">수량</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="notification_id">admin_01</string>
+    <string name="notificationChannel">kurlyAdminChannel</string>
+    <string name="notificationTitle">오피킹이 탐지되었습니다!</string>
+    <string name="dateFormat">yy-MM-dd HH:mm:ss</string>
 </resources>
