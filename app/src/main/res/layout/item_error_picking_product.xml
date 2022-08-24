@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="errorPickingProduct"
+            type="com.leetotheyutothelee.adminnotificationapp.presentation.model.ErrorPickingProductModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="24dp"
+            android:background="@drawable/r5_white"
+            android:elevation="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/tv_errorAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{errorPickingProduct.errorTime}"
+                tools:text="22.08.19 16:44"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_productName"/>
+
+            <TextView
+                android:id="@+id/tv_countTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/count"
+                android:textColor="@color/gray_300"
+                app:layout_constraintEnd_toStartOf="@id/iv_countIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/iv_countIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="4dp"
+                android:src="@{errorPickingProduct.isOver == true ? @drawable/ic_baseline_arrow_upward_24 : @drawable/ic_baseline_arrow_downward_24}"
+                app:layout_constraintEnd_toStartOf="@id/tv_count"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{errorPickingProduct.displayCount.toString()}"
+                tools:text="2"
+                android:textColor="@{errorPickingProduct.isOver == true ? @color/red_200 : @color/blue_200}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{errorPickingProduct.categoryName}"
+                android:textColor="@color/gray_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="가전제품" />
+
+            <TextView
+                android:id="@+id/tv_productName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{errorPickingProduct.productName}"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_countTitle"
+                app:layout_constraintTop_toBottomOf="@id/tv_category"
+                tools:text="공기청정기" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</layout>
